@@ -268,35 +268,35 @@ const restaurantList=
   }
 ];
 
-const RestaurantCard=()=>{
-    return (
+const RestaurantCard=(props1)=>{
+  console.log([props1.restaurant.data.name]);  
+  return (
     <div className="card" >
-        <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+restaurantList[0]["data"].cloudinaryImageId} ></img>
+        <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+props1.restaurant.data.cloudinaryImageId} ></img>
         {/* <h2>{console.log(restaurantList[0].data.name)}</h2> */}
-        <h2>{restaurantList[0].data.name?? 'No name'}</h2>
+        <h2>{props1.restaurant.data.name}</h2>
         
-        <h3>{restaurantList[0].data.cuisines.join(', ')}</h3>
-        <h4>{restaurantList[0].data.avgRating} *</h4>
+        <h3>{props1.restaurant.data.cuisines.join(', ')}</h3>
+        <h4>{props1.restaurant.data.avgRating} *</h4>
     </div>
     )
 }
 
-
+//props = properties
 const Body = () => {
   return (
     <div className="restaurant-list">
-    <RestaurantCard />
-    <RestaurantCard />
-    <RestaurantCard />
-    <RestaurantCard />
-
-    <RestaurantCard />
-
-    <RestaurantCard />
-    <RestaurantCard />
-    <RestaurantCard />
-    <RestaurantCard />
-
+    <RestaurantCard restaurant={restaurantList[0]} />
+    <RestaurantCard restaurant={restaurantList[1]} />
+    <RestaurantCard restaurant={restaurantList[2]} />
+    <RestaurantCard restaurant={restaurantList[2]} />
+    <RestaurantCard restaurant={restaurantList[2]} />
+    <RestaurantCard restaurant={restaurantList[2]} />
+    <RestaurantCard restaurant={restaurantList[2]} />
+    <RestaurantCard restaurant={restaurantList[2]} />
+    <RestaurantCard restaurant={restaurantList[2]} />
+    <RestaurantCard restaurant={restaurantList[2]} />
+    
     </div>
   );
 };
