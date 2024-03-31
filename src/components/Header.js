@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export const Title = () => (
   <a href="/">
     <img
@@ -10,6 +12,8 @@ export const Title = () => (
 
 //React Component Functional
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const title = "Food villa";
   return (
     <div className="header">
@@ -23,9 +27,13 @@ const Header = () => {
           <li>Cart</li>
         </ul>
       </div>
+      {isLoggedIn == true ? (
+        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+      ) : (
+        <button onClick={() => setIsLoggedIn(true)}>Login</button>
+      )}
     </div>
   );
 };
 
 export default Header;
-
