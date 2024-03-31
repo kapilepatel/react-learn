@@ -10,9 +10,11 @@ export const Title = () => (
 
 //React Component Functional
 const Header = () => {
+  const title = "Food villa";
   return (
     <div className="header">
       <Title />
+      <h1>{title}</h1>
       <div className="nav-items">
         <ul>
           <li>Home</li>

@@ -2,7 +2,7 @@ export const IMG_CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/
 
 export const restaurantList = [
     {
-      data: {
+      info: {
         id: "43836",
         name: "McDonald's",
         cloudinaryImageId: "f62564e14944753903849c4ef673af4d",
@@ -39,7 +39,7 @@ export const restaurantList = [
       },
     },
     {
-      data: {
+      info: {
         id: "77949",
         name: "Burger King",
         cloudinaryImageId: "e33e1d3ba7d6b2bb0d45e1001b731fcf",
@@ -77,7 +77,7 @@ export const restaurantList = [
       },
     },
     {
-      data: {
+      info: {
         id: "17301",
         name: "KFC",
         cloudinaryImageId: "f01666ac73626461d7455d9c24005cd4",
@@ -115,7 +115,7 @@ export const restaurantList = [
       },
     },
     {
-      data: {
+      info: {
         id: "23846",
         name: "Domino's Pizza",
         cloudinaryImageId: "d0450ce1a6ba19ea60cd724471ed54a8",
@@ -151,7 +151,7 @@ export const restaurantList = [
       },
     },
     {
-      data: {
+      info: {
         id: "124178",
         name: "Starbucks Coffee",
         cloudinaryImageId: "2418209798927d733a50f5d2ebcc2aee",

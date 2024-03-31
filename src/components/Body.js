@@ -1,29 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IMG_CDN_URL, restaurantList } from "../config";
 import RestaurantCard from "./RestaurantCard";
 
-//props = properties
+const filterData = (_searchText, _restaurants) => {
+  return _restaurants.filter((_restaurants) =>
+    _restaurants.data.name.toUpperCase().includes(_searchText.toUpperCase())
+  );
+};
+
 const Body = () => {
   console.log("Inside Body");
-  const onChangeInput = (e) => {
-    console.log("I'm getting changed");
-    console.log(e.target.value);
-  };
+  const [restaurants, setRestaurants] = useState(restaurantList);
+  const [searchText, setSearchText] = useState("");
+  //data.cards[4].card.card.gridElements.infoWithStyles.restaurants
+  useEffect(async ()=>{
+    console.log('in use effect');
+    getRestaurants();
+    
+  }, []);
 
-  // let searchTxt = "I'm static value from variable";
-  //state
-  //hooks
-  //use state
-  //why?
-  //searchTxt is a local state variable,
-  //returns variable name and function to update the first value
-  const [searchText, setSearchText] = useState("KFC");
- //const temp = useState("");
- //const [searchText, setSearchText] = temp;
+  async function getRestaurants(){
+    
+    const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    
+    //console.log(response);
+    const json = await response.json();
+    console.log(json);
+    
+    const data = json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+    //data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    console.log(data);
+    setRestaurants(data);
+  }
 
- const [searchClicked, setSearchClicked] = useState("false");
-
-   return (
+  return (
     <>
       <div className="search-container">
         <input
@@ -32,26 +42,25 @@ const Body = () => {
           placeholder="Search..."
           value={searchText}
           onChange={(e) => {
-            //onChangeInput(e);
             setSearchText(e.target.value);
           }}
         />
-        <button onClick={()=>{
-          if(searchClicked === "true"){
-            setSearchClicked("false");
-          }else{
-            setSearchClicked("true");
-          }
-          
-        }} >Button...</button>
-        <p>{searchText}</p>
-        <p>{searchClicked}</p>
-
+        <button
+          onClick={() => {
+            const data = filterData(searchText, restaurantList);
+            setRestaurants(data);
+          }}
+        >
+          Search
+        </button>
       </div>
       <div className="restaurant-list">
-        {restaurantList.map((restaurant) => {
+        {restaurants.map((restaurant) => {
           return (
-            <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+            // <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+            <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
+            
+            
           );
         })}
       </div>
