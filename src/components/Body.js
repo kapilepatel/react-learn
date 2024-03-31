@@ -1,39 +1,51 @@
 import { useState, useEffect } from "react";
 import { IMG_CDN_URL, restaurantList } from "../config";
 import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
 
 const filterData = (_searchText, _restaurants) => {
   return _restaurants.filter((_restaurants) =>
-    _restaurants.data.name.toUpperCase().includes(_searchText.toUpperCase())
+    _restaurants.info.name.toUpperCase().includes(_searchText.toUpperCase())
   );
 };
 
 const Body = () => {
   console.log("Inside Body");
-  const [restaurants, setRestaurants] = useState(restaurantList);
+  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   //data.cards[4].card.card.gridElements.infoWithStyles.restaurants
-  useEffect(async ()=>{
-    console.log('in use effect');
+  useEffect(async () => {
+    console.log("in use effect");
     getRestaurants();
-    
   }, []);
 
-  async function getRestaurants(){
-    
-    const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-    
+  async function getRestaurants() {
+    const response = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+
     //console.log(response);
     const json = await response.json();
     console.log(json);
-    
-    const data = json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
+
+    const data =
+      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
     //data.cards[4].card.card.gridElements.infoWithStyle.restaurants
     console.log(data);
-    setRestaurants(data);
+    setAllRestaurants(data);
+    setFilteredRestaurants(data);
   }
 
-  return (
+  if (!allRestaurants) return null;
+
+  if (allRestaurants.length > 0 && filteredRestaurants?.length === 0) {
+    return <h1>No match found!</h1>;
+  }
+
+  return allRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="search-container">
         <input
@@ -47,20 +59,18 @@ const Body = () => {
         />
         <button
           onClick={() => {
-            const data = filterData(searchText, restaurantList);
-            setRestaurants(data);
+            const data = filterData(searchText, allRestaurants);
+            setFilteredRestaurants(data);
           }}
         >
           Search
         </button>
       </div>
       <div className="restaurant-list">
-        {restaurants.map((restaurant) => {
+        {filteredRestaurants.map((restaurant) => {
           return (
             // <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
             <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
-            
-            
           );
         })}
       </div>

@@ -6,10 +6,10 @@ import { IMG_CDN_URL } from "../config";
 //const RestaurantCard = ({ restaurant }) => {
 // ...spread operator
 const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating }) => {
-  console.log(cloudinaryImageId);
-  console.log(name);
-  console.log(cuisines);
-  console.log(avgRating);
+  // console.log(cloudinaryImageId);
+  // console.log(name);
+  // console.log(cuisines);
+  // console.log(avgRating);
   //const { cloudinaryImageId, name, cuisines, avgRating } = restaurant.data;
   return (
     <div className="card">
@@ -17,7 +17,7 @@ const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating }) => {
       {/* <h2>{console.log(restaurantList[0].data.name)}</h2> */}
       <h2>{name}</h2>
 
-      {/* <h3>{cuisines.join(", ")}</h3> */}
+       <h3>{cuisines.join(", ")}</h3> 
       <h4>{avgRating} *</h4>
     </div>
   );
