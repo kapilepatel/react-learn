@@ -10,13 +10,12 @@ const filterData = (_searchText, _restaurants) => {
 };
 
 const Body = () => {
-  console.log("Inside Body");
+  
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
-  //data.cards[4].card.card.gridElements.infoWithStyles.restaurants
+  
   useEffect(async () => {
-    console.log("in use effect");
     getRestaurants();
   }, []);
 
@@ -36,6 +35,7 @@ const Body = () => {
     setAllRestaurants(data);
     setFilteredRestaurants(data);
   }
+// return <Shimmer />
 
   if (!allRestaurants) return null;
 
@@ -43,7 +43,7 @@ const Body = () => {
     return <h1>No match found!</h1>;
   }
 
-  return allRestaurants.length === 0 ? (
+  return allRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
     <>
