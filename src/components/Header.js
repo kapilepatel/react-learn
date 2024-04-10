@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
 export const Title = () => (
   <a href="/">
     <img
@@ -21,9 +22,15 @@ const Header = () => {
       <h1>{title}</h1>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
           <li>Cart</li>
         </ul>
       </div>
