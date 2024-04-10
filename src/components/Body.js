@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { IMG_CDN_URL, restaurantList } from "../config";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 
@@ -15,7 +14,7 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   
-  useEffect(async () => {
+  useEffect(() => {    
     getRestaurants();
   }, []);
 
@@ -26,12 +25,12 @@ const Body = () => {
 
     //console.log(response);
     const json = await response.json();
-    console.log(json);
+    //console.log(json);
 
     const data =
       json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants;
     //data.cards[4].card.card.gridElements.infoWithStyle.restaurants
-    console.log(data);
+    //console.log(data);
     setAllRestaurants(data);
     setFilteredRestaurants(data);
   }
