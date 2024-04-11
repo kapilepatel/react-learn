@@ -41,3 +41,7 @@
     background: lightgray;
     margin: 20px;
 }
+
+.restaurantInfo img{
+    width: 200px;
+}

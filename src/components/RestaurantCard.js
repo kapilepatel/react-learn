@@ -1,11 +1,18 @@
 import { IMG_CDN_URL } from "../config";
+import { Link } from "react-router-dom";
 
 //props1
 //or using destructuring  {restaurant}
 //or even go deeper like const { cloudinaryImageId, name, cuisines, avgRating } = restaurant.data;
 //const RestaurantCard = ({ restaurant }) => {
 // ...spread operator
-const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating }) => {
+const RestaurantCard = ({
+  id,
+  cloudinaryImageId,
+  name,
+  cuisines,
+  avgRating,
+}) => {
   // console.log(cloudinaryImageId);
   // console.log(name);
   // console.log(cuisines);
@@ -15,9 +22,11 @@ const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating }) => {
     <div className="card">
       <img src={IMG_CDN_URL + cloudinaryImageId}></img>
       {/* <h2>{console.log(restaurantList[0].data.name)}</h2> */}
-      <h2>{name}</h2>
+      <Link to={"/restaurant/" + id}>
+        <h2>{name}</h2>
+      </Link>
 
-       <h3>{cuisines.join(", ")}</h3> 
+      <h3>{cuisines.join(", ")}</h3>
       <h4>{avgRating} *</h4>
     </div>
   );
