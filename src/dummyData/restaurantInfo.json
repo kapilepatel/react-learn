@@ -2,5 +2,19 @@
     "id":"229",
     "name":"M Foods",
     "avgRating":4.4,
-    "costFortTwo":50000
+    "costFortTwo":50000,
+    "menu":[
+        {
+            "id": 11,
+            "name":  "Plain rice"   
+        },
+        {
+            "id": 12,
+            "name":  "Paneer 65"   
+        },
+        {
+            "id": 13,
+            "name":  "Gobi 65"   
+        }
+    ]
 }
