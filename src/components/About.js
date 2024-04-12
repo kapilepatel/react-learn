@@ -7,9 +7,9 @@ const About= ()=>{
             <h1>About US</h1>
             <p>I'm about page</p>
             {/* <Outlet /> */}
-            <ProfileCls name={"kp profile"} /> 
+            <ProfileCls name={"class base component"} /> 
 
-            <Profile name={"kp functional"} />
+            <Profile name={"functional component"} />
         </div>
     )
 }
