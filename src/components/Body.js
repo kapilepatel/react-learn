@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import {filterData} from "../utils/helper";
 
-const filterData = (_searchText, _restaurants) => {
-  return _restaurants.filter((_restaurants) =>
-    _restaurants.info.name.toUpperCase().includes(_searchText.toUpperCase())
-  );
-};
+// const filterData = (_searchText, _restaurants) => {
+//   return _restaurants.filter((_restaurants) =>
+//     _restaurants.info.name.toUpperCase().includes(_searchText.toUpperCase())
+//   );
+// };
 
 const Body = () => {
   

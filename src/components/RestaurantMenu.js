@@ -2,28 +2,32 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../config";
 import Shimmer from "./Shimmer";
+import useRestaurant from "../utils/useRestaurant";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
-  const [restaurant, setRestaurant] = useState(null);
+  
+  //const [restaurant, setRestaurant] = useState(null);
 
-  useEffect(() => {
-    getRestaurantInfo();
-  }, []);
+  const restaurant = useRestaurant(id);
 
-  async function getRestaurantInfo() {
-    const data = await fetch(
-      "https://raw.githubusercontent.com/kapilepatel/react-learn/main/src/dummyData/restaurantInfo.json"
-      //+ id
-    );
-    const json = await data.json();
-    console.log(json);
-    json?.menu?.map((item, index) => {
-      console.log(item.name);
-    });
+  // useEffect(() => {
+  //   getRestaurantInfo();
+  // }, []);
 
-    setRestaurant(json);
-  }
+  // async function getRestaurantInfo() {
+  //   const data = await fetch(
+  //     "https://raw.githubusercontent.com/kapilepatel/react-learn/main/src/dummyData/restaurantInfo.json"
+  //     //+ id
+  //   );
+  //   const json = await data.json();
+  //   console.log(json);
+  //   json?.menu?.map((item, index) => {
+  //     console.log(item.name);
+  //   });
+
+  //   setRestaurant(json);
+  // }
   if(!restaurant){
     return <Shimmer />;
 
