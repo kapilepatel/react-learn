@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import {filterData} from "../utils/helper";
-
+import useOnline from "../utils/useOnline";
 // const filterData = (_searchText, _restaurants) => {
 //   return _restaurants.filter((_restaurants) =>
 //     _restaurants.info.name.toUpperCase().includes(_searchText.toUpperCase())
@@ -36,6 +36,11 @@ const Body = () => {
     setFilteredRestaurants(data);
   }
 // return <Shimmer />
+const online = useOnline();
+if(!online)
+  {
+    return <h1> Offline please check your connection!</h1>;
+  }
 
   if (!allRestaurants) return null;
 
