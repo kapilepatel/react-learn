@@ -61,12 +61,14 @@ if(!online)
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
+          
         />
         <button
           onClick={() => {
             const data = filterData(searchText, allRestaurants);
             setFilteredRestaurants(data);
           }}
+          style={{backgroundColor: "blue", color: "white"}}
         >
           Search
         </button>
